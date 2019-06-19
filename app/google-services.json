@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "109215009792",
+    "firebase_url": "https://amplivoicetest1.firebaseio.com",
+    "project_id": "amplivoicetest1",
+    "storage_bucket": "amplivoicetest1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109215009792:android:0cf4772a35b8379e",
+        "android_client_info": {
+          "package_name": "com.dusenbery.amplivoicetest1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109215009792-t22mhp81isgcrmqm88ie1gjbs6nddh2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dusenbery.amplivoicetest1",
+            "certificate_hash": "e5b00743a6fc28b3ae87e7138c85a9f49c285cc9"
+          }
+        },
+        {
+          "client_id": "109215009792-qm9q9ulmagovaht0c72tsjqn09uo204j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNQEaAuTCDGBR_xxaxxDV8eyVQjAbccUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109215009792-qm9q9ulmagovaht0c72tsjqn09uo204j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
