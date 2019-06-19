@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +15,6 @@ import com.dusenbery.amplivoicetest1.model.User;
 import com.dusenbery.amplivoicetest1.utilities.ConvertEpoch;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.FirebaseUserMetadata;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -62,7 +60,7 @@ public class DashboardActivity extends AppCompatActivity {
         // Gets the current authenticated user from Firebase
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        //Gets the current user's uid  from the Firestore database and stores it as a String
+        //Gets the current user's uid from the Firestore database and stores it as a String
         userID = user.getUid();
 
         //Gets the current user's email address from the Firestore database and stores it as a String
@@ -74,21 +72,16 @@ public class DashboardActivity extends AppCompatActivity {
         ConvertEpoch convert = new ConvertEpoch();
         createdDate = convert.epochToIso8601(user.getMetadata().getCreationTimestamp());
 
-        //user metadata check
-        Log.d("USERMETADATA", "Your user's creation date is: " + createdDate);
-
-
         // Creates a new User object
         User mUser = new User(firstName, lastName);
 
-        // Sets user id field the current user object
-        mUser.setUserID(userID);
+        // Sets user email field the current user object
+        mUser.setEmail(email);
 
         // Sets user createdAtDate field the current user object
-        mUser.setCreatedAtDate(createdDate);
+        mUser.setCreationDate(createdDate);
 
-        //user object data check
-        Log.d("USERDATA", "Your user's ID is: " + mUser.getCreatedAtDate());
+
 
         // Add a new document to the users collection with the created User object
         users.document(userID).set(mUser);

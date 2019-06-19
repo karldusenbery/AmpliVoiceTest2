@@ -1,8 +1,5 @@
 package com.dusenbery.amplivoicetest1.model;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
 import com.google.firebase.firestore.IgnoreExtraProperties;
 
 /**
@@ -10,14 +7,14 @@ import com.google.firebase.firestore.IgnoreExtraProperties;
  */
 @IgnoreExtraProperties
 public class User {
-    public static final String FIELD_ID = "userID";
-    public static final String FIELD_CREATED_AT = "createdAtDate";
+    public static final String FIELD_EMAIL = "email";
+    public static final String FIELD_CREATED_AT = "creationDate";
     public static final String FIELD_FIRST_NAME = "firstName";
     public static final String FIELD_LAST_NAME = "lastName";
 
 
-    private String userID;
-    private String createdAtDate;
+    private String email;
+    private String creationDate;
     private String firstName;
     private String lastName;
 
@@ -28,29 +25,20 @@ public class User {
         this.lastName = lastName;
     }
 
-    /*
-    public User(String userID, String createdAtDate, String firstName, String lastName) {
-        this.userID = userID;
-        this.createdAtDate = createdAtDate;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-    */
-
-    public String getUserID() {
-        return userID;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getCreatedAtDate() {
-        return createdAtDate;
+    public String getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreatedAtDate(String createdAtDate) {
-        this.createdAtDate = createdAtDate;
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
     }
 
     public String getFirstName() {

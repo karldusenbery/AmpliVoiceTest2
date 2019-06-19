@@ -52,10 +52,10 @@
         android:id="@+id/fabRecordButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:layout_gravity="bottom|center_horizontal"
         app:srcCompat="@drawable/ic_action_record" />
 
     <android.support.design.widget.BottomNavigationView
