@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dusenbery.amplivoicetest1.model.User;
+import com.dusenbery.amplivoicetest1.utilities.ConvertEpoch;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.FirebaseUserMetadata;
@@ -68,10 +69,13 @@ public class DashboardActivity extends AppCompatActivity {
         email = user.getEmail();
 
         // Gets the current user's created date from the Firestore database and stores it as a String
-        createdDate = Long.toString(user.getMetadata().getCreationTimestamp());
+        //createdDate = Long.toString(user.getMetadata().getCreationTimestamp());
+
+        ConvertEpoch convert = new ConvertEpoch();
+        createdDate = convert.epochToIso8601(user.getMetadata().getCreationTimestamp());
 
         //user metadata check
-        //Log.d("USERMETADATA", "Your user's creation date is: " + createdDate);
+        Log.d("USERMETADATA", "Your user's creation date is: " + createdDate);
 
 
         // Creates a new User object
