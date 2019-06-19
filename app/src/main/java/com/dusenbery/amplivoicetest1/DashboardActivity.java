@@ -1,11 +1,14 @@
 package com.dusenbery.amplivoicetest1;
 
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -85,6 +88,26 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Add a new document to the users collection with the created User object
         users.document(userID).set(mUser);
+
+        //Bottom Navigation Bar Code
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_home:
+                        Toast.makeText(DashboardActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_notes:
+                        Toast.makeText(DashboardActivity.this, "Notes", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.action_profile:
+                        Toast.makeText(DashboardActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 
