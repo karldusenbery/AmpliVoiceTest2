@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coord_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="match_parent">
 
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -48,28 +45,108 @@
             android:textSize="28sp" />
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:onClick="onFabClicked"
+        android:src="@drawable/ic_action_record"
+        app:backgroundTint="@color/ampliBlue"
+        app:fabSize="auto"
+        app:layout_anchor="@+id/bottom_app_bar"
+        app:layout_anchorGravity="center|top" />
+
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
-        android:theme="@style/Widget.MaterialComponents.BottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="#e0e0e0"
-        app:fabAlignmentMode="center"
-        app:navigationIcon="@drawable/ic_action_menu_dark"/>
+        app:backgroundTint="@color/colorGray"
+        app:fabAlignmentMode="center">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_action_record"
-        app:backgroundTint="@color/ampliBlue"
-        app:layout_anchor="@id/bottom_app_bar" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <TextView
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableTop="@drawable/ic_action_home_dark"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="Home"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlack">
 
+            </TextView>
 
+            <TextView
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableTop="@drawable/ic_action_notes_dark"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="Notes"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlack">
+
+            </TextView>
+
+            <TextView
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableTop="@drawable/ic_action_groups_dark"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:textColor="@color/colorGray"
+                android:visibility="invisible">
+
+            </TextView>
+
+            <TextView
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableTop="@drawable/ic_action_groups_dark"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="Groups"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlack">
+
+            </TextView>
+
+            <TextView
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:drawableTop="@drawable/ic_action_profile_dark"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:text="Profile"
+                android:textAllCaps="false"
+                android:textColor="@color/colorBlack">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

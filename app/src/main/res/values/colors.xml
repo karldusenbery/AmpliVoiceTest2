@@ -16,6 +16,7 @@
     <!-- black and white colors -->
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGray">#e0e0e0</color>
 
     <!-- gradient  colors -->
     <color name="gradientPurple">#9013FE</color>
