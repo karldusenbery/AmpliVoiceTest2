@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#000000</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#D81B60</color>
+
+    <!-- primary app colors -->
+    <color name="ampliBlue">#007AFF</color>
+    <color name="darkBlue">#0061CC</color>
+    <color name="ampliRed">#D0021B</color>
+    <color name="ampliPurple">#9013FE</color>
+    <color name="ampliGreen">#2DC369</color>
+    <color name="ampliOrange">#FD9627</color>
+
+    <!-- gray colors -->
+    <color name="darkGray">#4A4A4A</color>
+    <color name="lightGray">#9B9B9B</color>
+
+    <!-- black and white colors -->
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+
+    <!-- gradient  colors -->
+    <color name="gradientPurple">#9013FE</color>
+    <color name="gradientRed">#C40068</color>
 </resources>

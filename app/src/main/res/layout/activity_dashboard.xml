@@ -15,7 +15,7 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="#007AFF"
+        android:background="@color/ampliBlue"
         tools:context=".DashboardActivity">
 
         <TextView
@@ -26,7 +26,7 @@
             android:fontFamily="@font/open_sans_bold"
             android:text="Welcome"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorWhite"
             android:textSize="28sp" />
         <TextView
             android:id="@+id/tvFirstName"
@@ -35,7 +35,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/open_sans_bold"
             android:text="First"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorWhite"
             android:textSize="28sp" />
         <TextView
             android:id="@+id/tvLastName"
@@ -44,17 +44,23 @@
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/open_sans_bold"
             android:text="Last"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/colorWhite"
             android:textSize="28sp" />
     </LinearLayout>
 
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabAlignmentMode="center"
+        app:navigationIcon="@drawable/ic_action_menu"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabRecordButton"
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:srcCompat="@drawable/ic_action_record" />
+        android:src="@drawable/ic_action_record"
+        app:layout_anchor="@id/bottom_app_bar" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -17,7 +17,7 @@
         android:fontFamily="@font/open_sans_bold"
         android:text="Login"
         android:textAlignment="center"
-        android:textColor="#007AFF"
+        android:textColor="@color/ampliBlue"
         android:textSize="28sp" />
 
     <EditText

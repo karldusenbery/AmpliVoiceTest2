@@ -17,7 +17,7 @@
         android:fontFamily="@font/open_sans_bold"
         android:text="Register New Account"
         android:textAlignment="center"
-        android:textColor="#007AFF"
+        android:textColor="@color/ampliBlue"
         android:textSize="28sp" />
     <EditText
         android:id="@+id/etFirstName"
@@ -62,7 +62,7 @@
         android:text="Register"
         android:textSize="22sp"
         android:textAllCaps="false"
-        android:textColor="#ffffff"
+        android:textColor="@color/colorWhite"
         android:background="@drawable/mybluebutton"/>
 
     <ProgressBar
