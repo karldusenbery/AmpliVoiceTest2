@@ -77,28 +77,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/ic_action_home_dark"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:text="Home"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack">
-
-            </TextView>
-
-            <TextView
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
                 android:drawableTop="@drawable/ic_action_notes_dark"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:text="Notes"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBlack">
-
             </TextView>
 
             <TextView
@@ -112,22 +96,6 @@
                 android:orientation="vertical"
                 android:textColor="@color/colorGray"
                 android:visibility="invisible">
-
-            </TextView>
-
-            <TextView
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/ic_action_groups_dark"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:text="Groups"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack">
-
             </TextView>
 
             <TextView
@@ -142,7 +110,6 @@
                 android:text="Profile"
                 android:textAllCaps="false"
                 android:textColor="@color/colorBlack">
-
             </TextView>
 
         </LinearLayout>
