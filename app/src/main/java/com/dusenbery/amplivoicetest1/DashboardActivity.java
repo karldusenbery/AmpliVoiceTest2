@@ -1,17 +1,24 @@
 package com.dusenbery.amplivoicetest1;
 
 import android.preference.PreferenceManager;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.dusenbery.amplivoicetest1.model.User;
 import com.dusenbery.amplivoicetest1.utilities.ConvertEpoch;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -21,6 +28,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
+    private static final String TAG = DashboardActivity.class.getName();
 
     String userID, email, createdDate;
 
@@ -29,20 +37,12 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        /**
-         *
-         * Using SharedPreferences to pull the user persistent data from a key-value pair
-         */
+
+        //Using SharedPreferences to pull the user persistent data from a key-value pair
         SharedPreferences myPreferences
                 = PreferenceManager.getDefaultSharedPreferences(DashboardActivity.this);
         String firstName = myPreferences.getString("FIRST_NAME", "unknown");
         String lastName = myPreferences.getString("LAST_NAME", "unknown");
-
-        tvFirstName = (TextView)findViewById(R.id.tvFirstName);
-        tvFirstName.setText(firstName);
-
-        tvLastName = (TextView)findViewById(R.id.tvLastName);
-        tvLastName.setText(lastName);
 
         // Enable Firestore logging
         FirebaseFirestore.setLoggingEnabled(true);
@@ -77,10 +77,37 @@ public class DashboardActivity extends AppCompatActivity {
         // Sets user createdAtDate field the current user object
         mUser.setCreationDate(createdDate);
 
-
-
         // Add a new document to the users collection with the created User object
         users.document(userID).set(mUser);
+
+
+        //TODO: Get first and last name fields from Firestore
+        String yourFirstname;
+        String yourLastName;
+
+        DocumentReference docRef = mFirestore.collection("users").document(userID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+
+        tvFirstName = (TextView)findViewById(R.id.tvFirstName);
+        tvFirstName.setText(firstName);
+        tvLastName = (TextView)findViewById(R.id.tvLastName);
+        tvLastName.setText(lastName);
 
     }
 
