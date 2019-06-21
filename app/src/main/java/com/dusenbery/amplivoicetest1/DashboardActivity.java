@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dusenbery.amplivoicetest1.model.User;
 import com.dusenbery.amplivoicetest1.utilities.ConvertEpoch;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,6 +23,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import static androidx.browser.browseractions.BrowserActionsIntent.KEY_TITLE;
+import static androidx.browser.customtabs.CustomTabsIntent.KEY_DESCRIPTION;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -30,7 +36,7 @@ public class DashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final String TAG = DashboardActivity.class.getName();
 
-    String userID, email, createdDate;
+    String userID, email, createdDate, mFirstName, mLastName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,19 +86,26 @@ public class DashboardActivity extends AppCompatActivity {
         // Add a new document to the users collection with the created User object
         users.document(userID).set(mUser);
 
+        // Gets user document from Firestore as reference
+        DocumentReference userDocRef = mFirestore.collection("users").document(userID);
 
-        //TODO: Get first and last name fields from Firestore
-        String yourFirstname;
-        String yourLastName;
-
-        DocumentReference docRef = mFirestore.collection("users").document(userID);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        userDocRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+
+                        // sets string values from the field's string values
+                        mFirstName = (String) document.getString("firstName");
+                        mLastName = (String) document.getString("lastName");
+
+                        // sets the text on the TextViews
+                        tvFirstName = (TextView)findViewById(R.id.tvFirstName);
+                        tvFirstName.setText(mFirstName);
+                        tvLastName = (TextView)findViewById(R.id.tvLastName);
+                        tvLastName.setText(mLastName);
+
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -102,17 +115,12 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
-
-
-        tvFirstName = (TextView)findViewById(R.id.tvFirstName);
-        tvFirstName.setText(firstName);
-        tvLastName = (TextView)findViewById(R.id.tvLastName);
-        tvLastName.setText(lastName);
-
     }
 
     private void initFirestore() {
         // Access a Cloud Firestore instance from your Activity
         mFirestore = FirebaseFirestore.getInstance();
     }
+
+
 }
