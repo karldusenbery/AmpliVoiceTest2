@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class DashboardActivity extends AppCompatActivity {
 
     private TextView tvFirstName;
     private TextView tvLastName;
+    private TextView tvNotesBtn;
+    private TextView tvProfileBtn;
 
     private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
@@ -46,6 +49,10 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        //initializes the TextViews
+        tvNotesBtn = (TextView)findViewById(R.id.tvNotesBtn);
+        tvProfileBtn = (TextView)findViewById(R.id.tvProfileBtn);
 
         // Disables and removes the back button in the action bar at the top of the screen
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -143,8 +150,6 @@ public class DashboardActivity extends AppCompatActivity {
                     }
                 }
             });
-
-
     }
 
     private void initFirestore() {
@@ -179,5 +184,15 @@ public class DashboardActivity extends AppCompatActivity {
         Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    public void notesBtn(View v)
+    {
+        Toast.makeText(this, "Clicked on Notes button", Toast.LENGTH_SHORT).show();
+    }
+
+    public void profileBtn(View v)
+    {
+        Toast.makeText(this, "Clicked on Profile button", Toast.LENGTH_SHORT).show();
     }
 }
