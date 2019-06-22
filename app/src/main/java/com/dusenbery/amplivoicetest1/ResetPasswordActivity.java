@@ -1,6 +1,5 @@
 package com.dusenbery.amplivoicetest1;
 
-import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,7 +16,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPasswordActivity extends AppCompatActivity {
@@ -32,7 +30,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_reset_password);
 
         // Enables the back button in the action bar at the top of the screen
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -53,31 +51,33 @@ public class ResetPasswordActivity extends AppCompatActivity {
     }
 
     private void sendPasswordResetEmail() {
-        progressBar.setVisibility(View.VISIBLE);
 
-        String email;
-        email = emailET.getText().toString();
+
+        String email = emailET.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
             return;
         }
-        FirebaseAuth auth = FirebaseAuth.getInstance();
 
-        auth.sendPasswordResetEmail(email)
+        progressBar.setVisibility(View.VISIBLE);
+
+        mAuth.sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Email sent.");
+                            Toast.makeText(getApplicationContext(), "Email sent", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
     }
 
     private void initializeUI() {
-        emailET = findViewById(R.id.etEmail);
-        sendEmailBtn = findViewById(R.id.btnLogin);
+        emailET = findViewById(R.id.etEmailToSendResetPWlinkTO);
+        sendEmailBtn = findViewById(R.id.btnSendEmail);
         progressBar = findViewById(R.id.progressBar);
     }
 

@@ -24,8 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailET, passwordET;
-    private Button loginBtn;
-    private TextView forgotPasswordTV;
+    private Button loginBtn, forgotPasswordBtn;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
@@ -48,6 +47,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loginUserAccount();
+            }
+        });
+
+        forgotPasswordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent resetPasswordActivityIntent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                startActivity(resetPasswordActivityIntent);
             }
         });
     }
@@ -87,16 +94,10 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    public void goToForgotPasswordActivity(View v)
-    {
-        Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
-        //startActivity(intent);
-    }
-
     private void initializeUI() {
         emailET = findViewById(R.id.etEmail);
         passwordET = findViewById(R.id.etPassword);
-        forgotPasswordTV = findViewById(R.id.tvForgotPassword);
+        forgotPasswordBtn = findViewById(R.id.btnForgotPassword);
         loginBtn = findViewById(R.id.btnLogin);
         progressBar = findViewById(R.id.progressBar);
     }
