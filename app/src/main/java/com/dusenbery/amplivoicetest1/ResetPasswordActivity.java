@@ -4,16 +4,15 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,14 +20,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity {
+public class ResetPasswordActivity extends AppCompatActivity {
 
-    private EditText emailET, passwordET;
-    private Button loginBtn;
-    private TextView forgotPasswordTV;
+    private EditText emailET;
+    private Button sendEmailBtn;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
+    private static final String TAG = DashboardActivity.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,60 +44,40 @@ public class LoginActivity extends AppCompatActivity {
 
         initializeUI();
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        sendEmailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUserAccount();
+                sendPasswordResetEmail();
             }
         });
     }
 
-    private void loginUserAccount() {
+    private void sendPasswordResetEmail() {
         progressBar.setVisibility(View.VISIBLE);
 
-        String email, password;
+        String email;
         email = emailET.getText().toString();
-        password = passwordET.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Please enter email...", Toast.LENGTH_LONG).show();
             return;
         }
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
-            return;
-        }
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-
-                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                            startActivity(intent);
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
+                            Log.d(TAG, "Email sent.");
                         }
                     }
                 });
     }
 
-    public void goToForgotPasswordActivity(View v)
-    {
-        Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
-        //startActivity(intent);
-    }
-
     private void initializeUI() {
         emailET = findViewById(R.id.etEmail);
-        passwordET = findViewById(R.id.etPassword);
-        forgotPasswordTV = findViewById(R.id.tvForgotPassword);
-        loginBtn = findViewById(R.id.btnLogin);
+        sendEmailBtn = findViewById(R.id.btnLogin);
         progressBar = findViewById(R.id.progressBar);
     }
 
