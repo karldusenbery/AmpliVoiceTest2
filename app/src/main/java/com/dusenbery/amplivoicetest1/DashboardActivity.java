@@ -1,5 +1,7 @@
 package com.dusenbery.amplivoicetest1;
 
+import android.app.ActionBar;
+import android.content.Intent;
 import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
@@ -45,17 +47,11 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        // Enables the back button in the action bar at the top of the screen
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Disables and removes the back button in the action bar at the top of the screen
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         // Removes the app title in the action bar at the top of the screen
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        //Using SharedPreferences to pull the user persistent data from a key-value pair
-        SharedPreferences myPreferences
-                = PreferenceManager.getDefaultSharedPreferences(DashboardActivity.this);
-        String firstName = myPreferences.getString("FIRST_NAME", "unknown");
-        String lastName = myPreferences.getString("LAST_NAME", "unknown");
 
         // Enable Firestore logging
         FirebaseFirestore.setLoggingEnabled(true);
@@ -64,7 +60,7 @@ public class DashboardActivity extends AppCompatActivity {
         initFirestore();
 
         // Get a reference to the users Firestore collection
-        CollectionReference users = mFirestore.collection("users");
+        final CollectionReference users = mFirestore.collection("users");
 
         // Gets the current authenticated user from Firebase
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -78,12 +74,8 @@ public class DashboardActivity extends AppCompatActivity {
         ConvertEpoch convert = new ConvertEpoch();
         createdDate = convert.epochToIso8601(user.getMetadata().getCreationTimestamp());
 
-///////////
-        // Checking if we need to get the user firstName and lastName from persistant data if this the first time launching this activity after initial registratoin
-        // or if we need to get the user firstName and lastName from that database
-        if(firstName.equals("unknown")){
-            Log.d("NAMES","Your names are unknown. They're only in the database");
-
+        // Checking if we need to get the user firstName and lastName from persistant data if this the first time launching this activity after initial registration
+        // or if we need to get the user firstName and lastName from the database
             // Gets user document from Firestore as reference
             DocumentReference userDocRef = mFirestore.collection("users").document(userID);
 
@@ -92,6 +84,8 @@ public class DashboardActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
+
+                        // if the user document for this uid exists, do this code
                         if (document.exists()) {
 
                             // sets string values from the field's string values
@@ -107,42 +101,50 @@ public class DashboardActivity extends AppCompatActivity {
                             // Sets user createdAtDate field the current user object
                             mUser.setCreationDate(createdDate);
 
-                            // sets the text on the TextViews
+                            // sets the text on the TextViews from the database (slow)
                             tvFirstName = (TextView)findViewById(R.id.tvFirstName);
                             tvFirstName.setText(mFirstName);
                             tvLastName = (TextView)findViewById(R.id.tvLastName);
                             tvLastName.setText(mLastName);
 
-                        } else {
+                        }
+
+                        // if the user document for this uid doesn't exist, do this code
+                        else {
                             Log.d(TAG, "No such document");
+                            Log.d("NAMES","Your names are maybe known from persistant data.");
+
+                            //Using SharedPreferences to pull the user persistent data from a key-value pair
+                            SharedPreferences myPreferences
+                                    = PreferenceManager.getDefaultSharedPreferences(DashboardActivity.this);
+                            String firstName = myPreferences.getString("FIRST_NAME", "unknown");
+                            String lastName = myPreferences.getString("LAST_NAME", "unknown");
+
+                            // Creates a new User object with name strings from persistant data
+                            User mUser = new User(firstName, lastName);
+
+                            // Sets user email field the current user object
+                            mUser.setEmail(email);
+
+                            // Sets user createdAtDate field the current user object
+                            mUser.setCreationDate(createdDate);
+
+                            // Adds a new document to the users collection with the created User mUser object data
+                            users.document(userID).set(mUser);
+
+                            // sets the text on the TextViews from persistant data (fast)
+                            tvFirstName = (TextView)findViewById(R.id.tvFirstName);
+                            tvFirstName.setText(firstName);
+                            tvLastName = (TextView)findViewById(R.id.tvLastName);
+                            tvLastName.setText(lastName);
                         }
                     } else {
                         Log.d(TAG, "get failed with ", task.getException());
                     }
                 }
             });
-        }
-        else {
-            Log.d("NAMES","Your names are known from persistant data.");
 
-            // Creates a new User object with name strings from persistant data
-            User mUser = new User(firstName, lastName);
 
-            // Sets user email field the current user object
-            mUser.setEmail(email);
-
-            // Sets user createdAtDate field the current user object
-            mUser.setCreationDate(createdDate);
-
-            // Adds a new document to the users collection with the created User mUser object data
-            users.document(userID).set(mUser);
-
-            // sets the text on the TextViews
-            tvFirstName = (TextView)findViewById(R.id.tvFirstName);
-            tvFirstName.setText(firstName);
-            tvLastName = (TextView)findViewById(R.id.tvLastName);
-            tvLastName.setText(lastName);
-        }
     }
 
     private void initFirestore() {
@@ -150,20 +152,32 @@ public class DashboardActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     // Creates a listener for the action bar at the top of the screen
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
+            case R.id.menuItem_logOut:
+                logOut();
+                Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    // Enables the action bar at the top of the screen
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
+    // Logs the user out and takes them back to the home screen
+    private void logOut(){
+        FirebaseAuth.getInstance().signOut();
+
+        Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
