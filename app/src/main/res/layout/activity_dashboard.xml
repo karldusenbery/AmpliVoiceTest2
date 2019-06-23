@@ -46,7 +46,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addFab"
+        android:id="@+id/microphoneFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="true"
@@ -90,6 +90,7 @@
             </TextView>
 
             <TextView
+                android:id="@+id/tvInvisibleMiddleBtn"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -99,7 +100,10 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:textColor="@color/colorGray"
-                android:visibility="invisible">
+                android:visibility="invisible"
+                android:clickable="false"
+                android:focusable="false"
+                android:onClick="invisibleBtn">
             </TextView>
 
             <TextView

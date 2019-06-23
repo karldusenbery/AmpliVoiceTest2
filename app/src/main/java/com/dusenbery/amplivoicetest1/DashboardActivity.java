@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -38,6 +39,8 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView tvLastName;
     private TextView tvNotesBtn;
     private TextView tvProfileBtn;
+    private TextView tvInvisibleMiddleBtn;
+    private FloatingActionButton micBtn;
 
     private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
@@ -53,6 +56,10 @@ public class DashboardActivity extends AppCompatActivity {
         //initializes the TextViews
         tvNotesBtn = (TextView)findViewById(R.id.tvNotesBtn);
         tvProfileBtn = (TextView)findViewById(R.id.tvProfileBtn);
+        tvInvisibleMiddleBtn = (TextView)findViewById(R.id.tvInvisibleMiddleBtn);
+
+        // initializes the buttons
+        micBtn = (FloatingActionButton)findViewById(R.id.microphoneFab);
 
         // Disables and removes the back button in the action bar at the top of the screen
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -186,13 +193,21 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // Executes this code when the Notes button at the bottom is clicked
     public void notesBtn(View v)
     {
         Toast.makeText(this, "Clicked on Notes button", Toast.LENGTH_SHORT).show();
     }
 
+    // Executes this code when the Profile button at the bottom is clicked
     public void profileBtn(View v)
     {
-        Toast.makeText(this, "Clicked on Profile button", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, Toast.LENGTH_SHORT, "Clicked on Profile button").show();
+    }
+
+    // Executes this code when the microphone floating action button at the bottom is clicked
+    public void onFabClicked(View v)
+    {
+        Toast.makeText(this, "Clicked on Mic button", Toast.LENGTH_SHORT).show();
     }
 }
