@@ -168,6 +168,7 @@ public class DashboardActivity extends AppCompatActivity {
         mFirestore = FirebaseFirestore.getInstance();
     }
 
+    // Creates a menu at the top action bar at the top of the screen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);

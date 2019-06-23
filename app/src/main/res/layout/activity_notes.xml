@@ -8,11 +8,12 @@
         android:id="@+id/addFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
         android:focusable="true"
-        android:onClick="onAddFabClicked"
         android:src="@drawable/ic_action_add"
         app:backgroundTint="@color/ampliBlue"
         app:fabSize="auto"
-        app:layout_anchorGravity="center|top" />
+        app:layout_anchorGravity="right|bottom" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
