@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dusenbery.amplivoicetest1">
 
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- this line allows the app to connect to the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".NotesActivity"
+            android:label="@string/title_activity_notes"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,22 +24,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".LoginActivity" />
-        <activity android:name=".RegistrationActivity" />
-
-        <!-- A child of the LoginActivity -->
+        <activity android:name=".RegistrationActivity" /> <!-- A child of the LoginActivity -->
         <activity
             android:name=".ResetPasswordActivity"
             android:label="ResetPasswordActivity"
-            android:parentActivityName="com.dusenbery.amplivoicetest1.LoginActivity" >
+            android:parentActivityName=".LoginActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.dusenbery.amplivoicetest1.LoginActivity" />
         </activity>
+        <activity android:name=".DashboardActivity" />
 
-        <activity android:name=".DashboardActivity"></activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

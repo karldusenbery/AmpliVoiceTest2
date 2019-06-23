@@ -53,13 +53,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        //initializes the TextViews
-        tvNotesBtn = (TextView)findViewById(R.id.tvNotesBtn);
-        tvProfileBtn = (TextView)findViewById(R.id.tvProfileBtn);
-        tvInvisibleMiddleBtn = (TextView)findViewById(R.id.tvInvisibleMiddleBtn);
-
-        // initializes the buttons
-        micBtn = (FloatingActionButton)findViewById(R.id.microphoneFab);
+        initializeUI();
 
         // Disables and removes the back button in the action bar at the top of the screen
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -159,6 +153,16 @@ public class DashboardActivity extends AppCompatActivity {
             });
     }
 
+    private void initializeUI() {
+        //initializes the TextViews
+        tvNotesBtn = (TextView)findViewById(R.id.tvNotesBtn);
+        tvProfileBtn = (TextView)findViewById(R.id.tvProfileBtn);
+        tvInvisibleMiddleBtn = (TextView)findViewById(R.id.tvInvisibleMiddleBtn);
+
+        // initializes the buttons
+        micBtn = (FloatingActionButton)findViewById(R.id.microphoneFab);
+    }
+
     private void initFirestore() {
         // Access a Cloud Firestore instance from your Activity
         mFirestore = FirebaseFirestore.getInstance();
@@ -197,12 +201,14 @@ public class DashboardActivity extends AppCompatActivity {
     public void notesBtn(View v)
     {
         Toast.makeText(this, "Clicked on Notes button", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(DashboardActivity.this, NotesActivity.class);
+        startActivity(intent);
     }
 
     // Executes this code when the Profile button at the bottom is clicked
     public void profileBtn(View v)
     {
-        Toast.makeText(this, Toast.LENGTH_SHORT, "Clicked on Profile button").show();
+        Toast.makeText(this, "Clicked on Profile button", Toast.LENGTH_SHORT).show();
     }
 
     // Executes this code when the microphone floating action button at the bottom is clicked
