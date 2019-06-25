@@ -106,24 +106,46 @@
                 android:onClick="invisibleBtn">
             </TextView>
 
-            <TextView
-                android:id="@+id/tvProfileBtn"
-                style="?android:attr/borderlessButtonStyle"
+            <RelativeLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/ic_action_profile_dark"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:text="Profile"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="profileBtn"
-                android:layout_marginRight="16dp"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack">
-            </TextView>
+                android:layout_gravity="center">
+
+                <Button
+                    android:id="@+id/btnProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:layout_alignLeft="@+id/buttonLayout"
+                    android:layout_alignRight="@+id/buttonLayout"
+                    android:background="@null" />
+
+                <LinearLayout
+                    android:id="@+id/buttonLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:gravity="center"
+                        android:text="Profile"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="@color/colorGray"
+                        android:textStyle="italic" />
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/profile" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -1,6 +1,5 @@
 package com.dusenbery.amplivoicetest1;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.preference.PreferenceManager;
 
@@ -13,14 +12,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dusenbery.amplivoicetest1.model.User;
 import com.dusenbery.amplivoicetest1.utilities.ConvertEpoch;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,16 +28,13 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import static androidx.browser.browseractions.BrowserActionsIntent.KEY_TITLE;
-import static androidx.browser.customtabs.CustomTabsIntent.KEY_DESCRIPTION;
-
 public class DashboardActivity extends AppCompatActivity {
 
     private TextView tvFirstName;
     private TextView tvLastName;
     private TextView tvNotesBtn;
-    private TextView tvProfileBtn;
     private TextView tvInvisibleMiddleBtn;
+    private Button btnProfileBtn;
     private FloatingActionButton micBtn;
 
     private FirebaseFirestore mFirestore;
@@ -156,7 +151,7 @@ public class DashboardActivity extends AppCompatActivity {
     private void initializeUI() {
         //initializes the TextViews
         tvNotesBtn = (TextView)findViewById(R.id.tvNotesBtn);
-        tvProfileBtn = (TextView)findViewById(R.id.tvProfileBtn);
+        btnProfileBtn = (Button)findViewById(R.id.btnProfile);
         tvInvisibleMiddleBtn = (TextView)findViewById(R.id.tvInvisibleMiddleBtn);
 
         // initializes the buttons
