@@ -34,7 +34,7 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView tvLastName;
     private TextView tvNotesBtn;
     private TextView tvInvisibleMiddleBtn;
-    private Button btnProfileBtn;
+    private Button profileBtn;
     private FloatingActionButton micBtn;
 
     private FirebaseFirestore mFirestore;
@@ -146,12 +146,21 @@ public class DashboardActivity extends AppCompatActivity {
                     }
                 }
             });
+
+        // Executes this code when the Profile button at the bottom is clicked
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initializeUI() {
         //initializes the TextViews
         tvNotesBtn = (TextView)findViewById(R.id.tvNotesBtn);
-        btnProfileBtn = (Button)findViewById(R.id.btnProfile);
+        profileBtn = (Button)findViewById(R.id.btnProfile);
         tvInvisibleMiddleBtn = (TextView)findViewById(R.id.tvInvisibleMiddleBtn);
 
         // initializes the buttons
@@ -196,15 +205,8 @@ public class DashboardActivity extends AppCompatActivity {
     // Executes this code when the Notes button at the bottom is clicked
     public void notesBtn(View v)
     {
-        Toast.makeText(this, "Clicked on Notes button", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(DashboardActivity.this, NotesActivity.class);
         startActivity(intent);
-    }
-
-    // Executes this code when the Profile button at the bottom is clicked
-    public void profileBtn(View v)
-    {
-        Toast.makeText(this, "Clicked on Profile button", Toast.LENGTH_SHORT).show();
     }
 
     // Executes this code when the microphone floating action button at the bottom is clicked
