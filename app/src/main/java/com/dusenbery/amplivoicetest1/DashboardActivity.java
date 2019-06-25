@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,13 +29,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class DashboardActivity extends AppCompatActivity {
 
     private TextView tvFirstName;
     private TextView tvLastName;
-    private TextView tvNotesBtn;
-    private TextView tvInvisibleMiddleBtn;
-    private Button profileBtn;
+    private LinearLayout llprofileTab;
+    private LinearLayout llNotesTab;
     private FloatingActionButton micBtn;
 
     private FirebaseFirestore mFirestore;
@@ -147,8 +149,18 @@ public class DashboardActivity extends AppCompatActivity {
                 }
             });
 
-        // Executes this code when the Profile button at the bottom is clicked
-        profileBtn.setOnClickListener(new View.OnClickListener() {
+
+        // Executes this code when the Notes tab in the bottom bar is clicked
+        llNotesTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, NotesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Executes this code when the Profile tab in the bottom bar is clicked
+        llprofileTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
@@ -159,9 +171,8 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void initializeUI() {
         //initializes the TextViews
-        tvNotesBtn = (TextView)findViewById(R.id.tvNotesBtn);
-        profileBtn = (Button)findViewById(R.id.btnProfile);
-        tvInvisibleMiddleBtn = (TextView)findViewById(R.id.tvInvisibleMiddleBtn);
+        llNotesTab = (LinearLayout) findViewById(R.id.llNotesTab);
+        llprofileTab = (LinearLayout) findViewById(R.id.llprofileTab);
 
         // initializes the buttons
         micBtn = (FloatingActionButton)findViewById(R.id.microphoneFab);
@@ -199,13 +210,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
-
-    // Executes this code when the Notes button at the bottom is clicked
-    public void notesBtn(View v)
-    {
-        Intent intent = new Intent(DashboardActivity.this, NotesActivity.class);
         startActivity(intent);
     }
 

@@ -64,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:backgroundTint="@color/colorGray"
+        app:contentInsetStart="0dp"
         app:fabAlignmentMode="center">
 
         <LinearLayout
@@ -71,23 +72,30 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvNotesBtn"
-                style="?android:attr/borderlessButtonStyle"
+            <LinearLayout
+                android:id="@+id/llNotesTab"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="?android:attr/selectableItemBackground"
-                android:drawableTop="@drawable/ic_action_notes_dark"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:text="Notes"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="notesBtn"
-                android:textAllCaps="false"
-                android:textColor="@color/colorBlack">
-            </TextView>
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivNotesBtn"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_action_notes_dark" />
+
+                <TextView
+                    android:id="@+id/tvNotesBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Notes"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvInvisibleMiddleBtn"
@@ -96,56 +104,40 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?android:attr/selectableItemBackground"
+                android:clickable="false"
                 android:drawableTop="@drawable/ic_action_groups_dark"
+                android:focusable="false"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:textColor="@color/colorGray"
-                android:visibility="invisible"
-                android:clickable="false"
-                android:focusable="false"
-                android:onClick="invisibleBtn">
-            </TextView>
+                android:visibility="invisible"/>
 
-            <RelativeLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <LinearLayout
+                android:id="@+id/llprofileTab"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:layout_gravity="center">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btnProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="80dp"
-                    android:layout_alignLeft="@+id/buttonLayout"
-                    android:layout_alignRight="@+id/buttonLayout"
-                    android:background="@null" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/btnCircularProfile"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/profile"
+                    app:civ_border_color="@color/colorBlack"
+                    app:civ_border_width="1dp" />
 
-                <LinearLayout
-                    android:id="@+id/buttonLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvProfileBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack" />
 
-                    <TextView
-                        android:id="@+id/tvProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="80dp"
-                        android:gravity="center"
-                        android:text="Profile"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="@color/colorGray"
-                        android:textStyle="italic" />
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/profile" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
