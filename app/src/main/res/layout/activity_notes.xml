@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addFab"
         android:layout_width="wrap_content"
@@ -15,5 +20,7 @@
         app:backgroundTint="@color/ampliBlue"
         app:fabSize="auto"
         app:layout_anchorGravity="right|bottom" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

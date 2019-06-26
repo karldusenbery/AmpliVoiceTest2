@@ -21,11 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
 dependencies {
     // Firestore
-    implementation 'com.google.firebase:firebase-firestore:19.0.2'
+
+    implementation 'com.firebaseui:firebase-ui-firestore:5.0.0'
 
     // Other Firebase/Play services deps
     implementation 'com.google.firebase:firebase-core:16.0.9'
