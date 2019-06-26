@@ -26,7 +26,7 @@ public class NotesActivity extends AppCompatActivity {
     private FloatingActionButton addBtn;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference notebookRef = db.collection("testCollection");
+    private CollectionReference notebookRef = db.collection("notes");
 
     private NoteAdapter adapter;
 
@@ -56,7 +56,7 @@ public class NotesActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
-        Query query = notebookRef.orderBy("priority", Query.Direction.DESCENDING);
+        Query query = notebookRef.orderBy("creationDate", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Note> options = new FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query, Note.class)

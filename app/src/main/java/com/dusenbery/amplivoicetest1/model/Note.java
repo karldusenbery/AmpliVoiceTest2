@@ -2,28 +2,22 @@ package com.dusenbery.amplivoicetest1.model;
 
 public class Note {
     private String title;
-    private String description;
-    private int priority;
+    private String creationDate;
 
     public Note() {
         //empty constructor needed
     }
 
-    public Note(String title, String description, int priority) {
+    public Note(String title, String creationDate) {
         this.title = title;
-        this.description = description;
-        this.priority = priority;
+        this.creationDate = creationDate;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public int getPriority() {
-        return priority;
+    public String getCreationDate() {
+        return creationDate;
     }
 }

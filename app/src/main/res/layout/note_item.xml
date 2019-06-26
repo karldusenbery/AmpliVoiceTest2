@@ -17,7 +17,6 @@
             android:id="@+id/text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/text_view_priority"
             android:layout_alignParentStart="true"
             android:text="Title"
             android:maxLines="1"
@@ -28,18 +27,9 @@
             android:id="@+id/text_view_priority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-
-        <TextView
-            android:id="@+id/text_view_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:text="Description"
-            android:layout_below="@id/text_view_title"/>
+            android:text="Creation date"
+            android:layout_below="@id/text_view_title" />
 
     </RelativeLayout>
 
