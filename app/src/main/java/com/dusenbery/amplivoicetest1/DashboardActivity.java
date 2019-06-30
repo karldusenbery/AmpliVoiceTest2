@@ -125,7 +125,7 @@ public class DashboardActivity extends AppCompatActivity {
 
                             //Gets the current time and sets that as a string that represents current time in ISO 8601 format
                             TimeZone tz = TimeZone.getTimeZone("UTC");
-                            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
                             df.setTimeZone(tz);
                             createdDate = df.format(new Date());
 
