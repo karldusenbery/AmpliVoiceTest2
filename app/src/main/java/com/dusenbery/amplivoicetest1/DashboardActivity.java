@@ -12,13 +12,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dusenbery.amplivoicetest1.model.User;
-import com.dusenbery.amplivoicetest1.utilities.ConvertEpoch;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,7 +27,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -76,9 +77,6 @@ public class DashboardActivity extends AppCompatActivity {
         //Gets the current user's email address from the Firestore database and stores it as a String
         email = user.getEmail();
 
-        ConvertEpoch convert = new ConvertEpoch();
-        createdDate = convert.epochToIso8601(user.getMetadata().getCreationTimestamp());
-
         // Checking if we need to get the user firstName and lastName from persistant data if this the first time launching this activity after initial registration
         // or if we need to get the user firstName and lastName from the database
             // Gets user document from Firestore as reference
@@ -93,18 +91,12 @@ public class DashboardActivity extends AppCompatActivity {
                         // if the user document for this uid exists, do this code
                         if (document.exists()) {
 
-                            // sets string values from the field's string values
+                            Log.d(TAG, "No such document");
+                            Log.d("NAMES","Your names are known from the firestore database.");
+
+                            // gets string values from the field's string values
                             mFirstName = (String) document.getString("firstName");
                             mLastName = (String) document.getString("lastName");
-
-                            // Creates a new User object with name strings from the database
-                            User mUser = new User(mFirstName, mFirstName);
-
-                            // Sets user email field the current user object
-                            mUser.setEmail(email);
-
-                            // Sets user createdAtDate field the current user object
-                            mUser.setCreationDate(createdDate);
 
                             // sets the text on the TextViews from the database (slow)
                             tvFirstName = (TextView)findViewById(R.id.tvFirstName);
@@ -130,6 +122,12 @@ public class DashboardActivity extends AppCompatActivity {
 
                             // Sets user email field the current user object
                             mUser.setEmail(email);
+
+                            //Gets the current time and sets that as a string that represents current time in ISO 8601 format
+                            TimeZone tz = TimeZone.getTimeZone("UTC");
+                            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+                            df.setTimeZone(tz);
+                            createdDate = df.format(new Date());
 
                             // Sets user createdAtDate field the current user object
                             mUser.setCreationDate(createdDate);
