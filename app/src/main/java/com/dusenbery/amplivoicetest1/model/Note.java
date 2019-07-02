@@ -1,5 +1,7 @@
 package com.dusenbery.amplivoicetest1.model;
 
+import android.util.Log;
+
 public class Note {
     private String title;
     private String creationDate;
