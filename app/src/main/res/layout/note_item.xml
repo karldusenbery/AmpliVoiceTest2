@@ -13,33 +13,35 @@
         android:layout_height="match_parent"
         android:padding="8dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circle_image_view_profile_image"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/profile"
-            android:padding="0dp"
-            app:civ_border_width="1dp"
-            app:civ_border_color="@color/colorWhite"/>
-
         <TextView
             android:id="@+id/text_view_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/circle_image_view_profile_image"
-            android:layout_marginStart="8dp"
+            android:layout_alignParentStart="true"
             android:text="Title"
             android:maxLines="1"
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circle_image_view_profile_image"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/text_view_title"
+            android:src="@drawable/profile"
+            android:padding="0dp"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/colorWhite"/>
+
+
         <TextView
             android:id="@+id/text_view_creation_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/circle_image_view_profile_image"
+            android:layout_marginTop="7dp"
+            android:layout_marginStart="8dp"
             android:text="Creation date"
             android:maxLines="1"
             android:ellipsize="end"
