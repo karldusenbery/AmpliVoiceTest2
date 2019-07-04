@@ -1,9 +1,9 @@
 package com.dusenbery.amplivoicetest1.utilities;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,13 +13,11 @@ import com.dusenbery.amplivoicetest1.R;
 import com.dusenbery.amplivoicetest1.model.Note;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.NoteHolder> {
+
+    private AdapterView.OnItemClickListener listener;
 
     public NoteAdapter(@NonNull FirestoreRecyclerOptions<Note> options) {
         super(options);
@@ -119,7 +117,6 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
         //sets the date text view
         holder.textViewCreationDate.setText(parsedAndConvertedDate);
 
-
     }
 
     @NonNull
@@ -138,6 +135,26 @@ public class NoteAdapter extends FirestoreRecyclerAdapter<Note, NoteAdapter.Note
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewCreationDate = itemView.findViewById(R.id.text_view_creation_date);
+
+            // Sets up the the onClickListener for the note we clicked on
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && listener != null) {
+                        listener.onItemClick(getSnapshots().getSnapshot(position), position);
+                    }
+                }
+            });
         }
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(DocumentSnapshot documentSnapshot, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
 }

@@ -7,7 +7,7 @@ public class Note {
     private String creationDate;
 
     public Note() {
-        //empty constructor needed
+        //empty constructor
     }
 
     public Note(String title, String creationDate) {
