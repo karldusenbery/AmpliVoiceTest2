@@ -1,5 +1,6 @@
 package com.dusenbery.amplivoicetest1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.dusenbery.amplivoicetest1.model.Note;
@@ -22,6 +23,7 @@ import android.view.View;
 public class NotesActivity extends AppCompatActivity {
 
     private FloatingActionButton addBtn;
+    private FloatingActionButton testNotesActivityBtn;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference notebookRef = db.collection("notes");
@@ -43,12 +45,21 @@ public class NotesActivity extends AppCompatActivity {
         // Removes the app title in the action bar at the top of the screen
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        // Executes this code when the plus sign floating action button at the bottom is clicked
+        // Executes this code when the microphone icon floating action button at the bottom is clicked
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Let's add a note", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        // {Test purposes only} Launches the NoteDetailActivity when the notes floating action button is clicked
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotesActivity.this, NoteDetailActivity.class);
+                startActivity(intent);
             }
         });
     }
