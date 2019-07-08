@@ -55,7 +55,7 @@ public class NotesActivity extends AppCompatActivity {
         });
 
         // {Test purposes only} Launches the NoteDetailActivity when the notes floating action button is clicked
-        addBtn.setOnClickListener(new View.OnClickListener() {
+        testNotesActivityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NotesActivity.this, NoteDetailActivity.class);
@@ -93,6 +93,7 @@ public class NotesActivity extends AppCompatActivity {
 
     private void initializeUI() {
         addBtn = (FloatingActionButton)findViewById(R.id.addFab);
+        testNotesActivityBtn = (FloatingActionButton)findViewById(R.id.noteDetailsActivityTestFab);
     }
 
     // Creates a listener for the action bar at the top of the screen
