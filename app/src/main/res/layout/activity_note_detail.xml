@@ -15,7 +15,7 @@
         android:text="1 Jan 2000" />
 
     <TextView
-        android:id="@+id/tvSeparator"
+        android:id="@+id/tvSeparator1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/tvDate"
@@ -26,7 +26,7 @@
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/tvSeparator"
+        android:layout_toEndOf="@+id/tvSeparator1"
         android:textSize="16sp"
         android:text="Sophia Clarke" />
 
@@ -34,6 +34,7 @@
         android:id="@+id/circle_image_view_profile_image"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:layout_marginEnd="16dp"
         android:layout_alignParentEnd="true"
         android:src="@drawable/profile"
         android:padding="0dp"
@@ -44,12 +45,237 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_below="@+id/tvDate"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Meeting With Jon Doe"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/tvTemplateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:textSize="16sp"
+        android:text="Template: " />
+
+    <TextView
+        android:id="@+id/tvTemplateTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_toEndOf="@+id/tvTemplateTitle"
+        android:textSize="16sp"
+        android:text="First Contact" />
+
+    <TextView
+        android:id="@+id/tvSeparator2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/tvTemplateTitleText"
+        android:layout_below="@+id/tvTitle"
+        android:textSize="16sp"
+        android:text=" | " />
+
+    <TextView
+        android:id="@+id/tvTimeDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/tvSeparator2"
+        android:layout_below="@+id/tvTitle"
+        android:textSize="16sp"
+        android:text="01:58 min" />
+
+    <TextView
+        android:id="@+id/tvKeywordsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tvTemplateTitle"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="Meeting With Jon Doe" />
+        android:textSize="14sp"
+        android:textColor="@color/darkGray"
+        android:text="keywords"
+        android:textAllCaps="true"/>
+    <LinearLayout
+        android:id="@+id/llTags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tvKeywordsTitle">
 
+        <Button
+            android:id="@+id/btnTag1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:backgroundTint="@color/ampliGreen"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:text="Jon Doe"/>
+
+        <Button
+            android:id="@+id/btnTag2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:backgroundTint="@color/ampliGreen"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:text="insurance"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvGroupTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/llTags"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        android:textColor="@color/darkGray"
+        android:text="group"
+        android:textAllCaps="true"/>
+
+    <LinearLayout
+        android:id="@+id/llSalesClickableRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tvGroupTitle">
+
+        <TextView
+            android:id="@+id/tvSalesRowText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:text="Sales"
+            android:textSize="18sp"
+            android:textColor="@color/darkGray"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_arrow_right_light_gray" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAssignContactTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/llSalesClickableRow"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        android:textColor="@color/darkGray"
+        android:text="Assign Contact"
+        android:textAllCaps="true"/>
+
+    <LinearLayout
+        android:id="@+id/llContactNameClickableRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tvAssignContactTitle"
+        android:layout_marginTop="8dp">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cbContact"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:checked="true"
+            android:buttonTint="@color/ampliBlue"/>
+        <TextView
+            android:id="@+id/tvContactNameRowText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="John Doe"
+            android:textSize="18sp"
+            android:textColor="@color/darkGray"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_arrow_right_light_gray" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvActionsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/llContactNameClickableRow"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        android:textColor="@color/darkGray"
+        android:text="Actions"
+        android:textAllCaps="true"/>
+
+    <LinearLayout
+        android:id="@+id/llAction1ClickableRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tvActionsTitle"
+        android:layout_marginTop="8dp">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cbAction1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:checked="true"
+            android:buttonTint="@color/ampliBlue"/>
+        <TextView
+            android:id="@+id/tvAction1NameRowText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Send the presentaion"
+            android:textSize="18sp"
+            android:textColor="@color/darkGray"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_more_light_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAction2ClickableRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/llAction1ClickableRow"
+        android:layout_marginTop="8dp">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cbAction2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:checked="true"
+            android:buttonTint="@color/ampliBlue"/>
+        <TextView
+            android:id="@+id/tvAction2NameRowText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Send Contracts"
+            android:textSize="18sp"
+            android:textColor="@color/darkGray"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_action_more_light_gray" />
+    </LinearLayout>
 
 </RelativeLayout>
