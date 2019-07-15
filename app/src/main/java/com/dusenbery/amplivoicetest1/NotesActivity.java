@@ -54,7 +54,8 @@ public class NotesActivity extends AppCompatActivity {
             }
         });
 
-        // {Test purposes only} Launches the NoteDetailActivity when the notes floating action button is clicked
+        //TODO: Make this a click on a note in the list
+        //{Test purposes only} Launches the NoteDetailActivity when the notes floating action button is clicked
         testNotesActivityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
